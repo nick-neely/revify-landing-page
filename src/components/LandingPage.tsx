@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Toaster } from "@/components/ui/toaster";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 import {
   BarChart3,
@@ -16,6 +17,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Background } from "./Background";
+import { Header } from "./Header";
 import { SignupForm } from "./SignupForm";
 import SpotlightCards from "./SpotlightCards";
 
@@ -80,11 +82,13 @@ export function LandingPage() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-gray-900 text-white">
+    <div className="relative mt-12 min-h-screen overflow-x-hidden bg-gray-900 text-white">
       <div className="fixed inset-0 z-0">
         <Background />
       </div>
       <div className="fixed inset-0 z-10 bg-gray-900 bg-opacity-70 backdrop-blur-sm"></div>
+
+      <Header />
 
       <div className="relative z-20 flex min-h-screen flex-col items-center justify-center p-4 text-center md:p-8">
         <motion.div
@@ -123,12 +127,12 @@ export function LandingPage() {
           Join other SaaS founders eagerly awaiting our launch!
         </p>
 
-        <div className="relative z-20 mt-16 w-full max-w-5xl">
+        <div id="features" className="relative z-20 mt-8 w-full max-w-5xl">
           <h2 className="mb-8 text-3xl font-bold">Key Features</h2>
           <SpotlightCards features={features} />
         </div>
 
-        <div className="relative z-20 mt-16 w-full max-w-3xl">
+        <div id="faq" className="relative z-20 mt-16 w-full max-w-3xl">
           <h2 className="mb-8 text-3xl font-bold">
             Frequently Asked Questions
           </h2>
