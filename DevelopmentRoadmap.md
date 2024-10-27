@@ -56,6 +56,8 @@ Revify operates on a **freemium model** with both free and Pro tiers:
 - **CI/CD**: GitHub Actions
 - **Testing**: Vitest, Testing Library
 
+For more details, check out the full [Tech Stack documentation](Tech%20Stack.md).
+
 ---
 
 ## 🗺️ Development Roadmap
@@ -86,7 +88,7 @@ Revify operates on a **freemium model** with both free and Pro tiers:
 - **Scenario Benchmarking**: Compare with industry benchmarks.
 - **Email Reports**: Regular email updates with scenario summaries and analytics.
 
-For a more detailed breakdown, refer to the [Development Roadmap documentation](./DevelopmentRoadmap.md).
+For a more detailed breakdown, refer to the [Development Roadmap documentation](Development%20Roadmap.md).
 
 ---
 
