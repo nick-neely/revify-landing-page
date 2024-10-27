@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: title,
     images: [
       {
-        url: `${url}/api/og`,
+        url: `${url}api/og`,
         width: 1200,
         height: 630,
       },
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     siteId: "4745196188", // @nickneely00 account
     creator: "@TryRevify",
     creatorId: "1850319161299279872", // @TryRevify account
-    images: [`${url}/api/og`],
+    images: [`${url}api/og`],
   },
   manifest: `${url}manifest.json`,
 };
