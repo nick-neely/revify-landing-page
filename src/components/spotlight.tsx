@@ -1,7 +1,7 @@
 "use client";
 
 import { useMousePosition } from "@/lib/utils";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 type SpotlightProps = {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ export default function Spotlight({
   const containerSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const [boxes, setBoxes] = useState<Array<HTMLElement>>([]);
 
-  const onMouseMove = () => {
+  const onMouseMove = useCallback(() => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       const { w, h } = containerSize.current;
@@ -38,13 +38,14 @@ export default function Spotlight({
         });
       }
     }
-  };
+  }, [mousePosition, boxes]);
 
   useEffect(() => {
-    containerRef.current &&
+    if (containerRef.current) {
       setBoxes(
         Array.from(containerRef.current.children).map((el) => el as HTMLElement)
       );
+    }
   }, []);
 
   useEffect(() => {

@@ -71,7 +71,6 @@ export const metadata: Metadata = {
     creatorId: "1850319161299279872", // @TryRevify account
     images: [`${url}/api/og`],
   },
-
   manifest: `${url}manifest.json`,
 };
 
