@@ -10,7 +10,7 @@ export async function POST(request: Request) {
       from: "Revify <noreply@updates.tryrevify.io>",
       to: [email],
       subject: `Welcome to Revify, ${username}!`,
-      react: <WelcomeEmail username={username} firstName={firstName} />,
+      react: WelcomeEmail({ username, firstName }),
     });
 
     if (error) {
