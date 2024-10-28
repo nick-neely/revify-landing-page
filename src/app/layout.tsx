@@ -7,7 +7,6 @@ const title = "Revify";
 const url = "https://tryrevify.io/";
 const description =
   "Empower your SaaS growth with AI-driven revenue projections. Forecast churn, profitability, and scale with confidence.";
-const twitter = "@nickneely00";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
