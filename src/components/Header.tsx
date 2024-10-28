@@ -11,7 +11,7 @@ export function Header() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/images/logo.svg"
+              src="/static/logo.svg"
               alt="Revify Logo"
               width={32}
               height={32}

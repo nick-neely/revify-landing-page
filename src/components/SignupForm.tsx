@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export function SignupForm() {
   const { toast } = useToast();
   const { openSignUp } = useClerk();
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const [showSignUp, setShowSignUp] = useState(false);
 
   useEffect(() => {
@@ -43,6 +43,26 @@ export function SignupForm() {
         redirectUrl: window.location.href,
       });
       sessionStorage.setItem("signUpComplete", "true");
+
+      // Get user information after sign up
+      if (user) {
+        const email = user.primaryEmailAddress?.emailAddress;
+        const username = user.username || user.id; // Fallback to user ID if username is not available
+        const firstName = user.firstName;
+
+        // Call API endpoint to send welcome email
+        const response = await fetch("/api/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, username, firstName }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to send welcome email");
+        }
+      }
     } catch (err) {
       console.error("Error during sign up:", err);
     }
