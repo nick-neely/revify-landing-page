@@ -24,7 +24,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
-    default: "Revify | SaaS Revenue Projection Tool",
+    default: "Revify",
     template: "%s | Revify",
   },
   applicationName: title,

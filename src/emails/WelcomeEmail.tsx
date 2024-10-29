@@ -22,8 +22,8 @@ interface WelcomeEmailProps {
   firstName?: string;
 }
 
-export const WelcomeEmail = ({ username, firstName }: WelcomeEmailProps) => {
-  const previewText = `Thank you for signing up for Revify${firstName ? ", " + firstName : ""}!`;
+export const WelcomeEmail = ({ firstName }: WelcomeEmailProps) => {
+  const previewText = `Welcome to Revify${firstName ? ", " + firstName : ""}! Discover the future of revenue forecasting.`;
 
   const baseUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
