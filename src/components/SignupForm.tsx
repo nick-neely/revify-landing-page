@@ -42,20 +42,35 @@ export function SignupForm() {
         const username = user.username || user.id;
         const firstName = user.firstName;
 
-        try {
-          const response = await fetch("/api/emails", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, username, firstName }),
-          });
+        // Check if the user was created in the last 5 minutes
+        const isNewUser =
+          user.createdAt &&
+          Date.now() - new Date(user.createdAt).getTime() < 5 * 60 * 1000;
 
-          if (!response.ok) {
-            throw new Error("Failed to send welcome email");
+        // Check if welcome email has been sent before
+        const welcomeEmailSent = localStorage.getItem(
+          `welcomeEmailSent_${user.id}`
+        );
+
+        if (isNewUser && !welcomeEmailSent) {
+          try {
+            const response = await fetch("/api/email/welcome", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, username, firstName }),
+            });
+
+            if (!response.ok) {
+              throw new Error("Failed to send welcome email");
+            }
+
+            // Mark welcome email as sent
+            localStorage.setItem(`welcomeEmailSent_${user.id}`, "true");
+          } catch (err) {
+            console.error("Error sending welcome email:", err);
           }
-        } catch (err) {
-          console.error("Error sending welcome email:", err);
         }
       }
     };
