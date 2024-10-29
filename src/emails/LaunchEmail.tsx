@@ -17,10 +17,11 @@ import * as React from "react";
 
 interface LaunchEmailProps {
   username: string;
+  firstName?: string;
 }
 
-export const LaunchEmail = ({ username }: LaunchEmailProps) => {
-  const previewText = `Welcome to Revify, ${username}!`;
+export const LaunchEmail = ({ firstName }: LaunchEmailProps) => {
+  const previewText = `Hey ${firstName || "there"}! Your exclusive access to Revify is here! 🚀`;
 
   const baseUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
@@ -41,7 +42,7 @@ export const LaunchEmail = ({ username }: LaunchEmailProps) => {
               className="mx-auto mb-6"
             />
             <Heading className="mb-6 text-center text-3xl font-bold text-white">
-              Welcome to Revify, {username}!
+              Welcome to Revify, {firstName}!
             </Heading>
             <Text className="mb-6 text-center text-lg text-gray-300">
               We're thrilled to have you on board. Get ready to empower your
