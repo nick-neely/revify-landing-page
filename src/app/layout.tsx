@@ -7,7 +7,6 @@ const title = "Revify";
 const url = "https://tryrevify.io/";
 const description =
   "Empower your SaaS growth with AI-driven revenue projections. Forecast churn, profitability, and scale with confidence.";
-const twitter = "@nickneely00";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -83,6 +82,20 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <link
+            rel="icon"
+            type="image/png"
+            href="/icons/favicon-96x96.png"
+            sizes="96x96"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            href="/icons/favicon-48x48.png"
+            sizes="48x48"
+          />
+        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

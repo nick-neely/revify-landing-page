@@ -25,9 +25,9 @@ export async function GET(req: NextRequest) {
             <path d="M3 3v18h18" />
             <path d="m3 12 4-4 6 6 4-4 4 4" />
           </svg>
-            <h1 tw="text-7xl font-extrabold text-white mt-8 mb-4 text-center">
+          <h1 tw="text-7xl font-extrabold text-white mt-8 mb-4 text-center">
             {title}
-            </h1>
+          </h1>
           <p tw="text-2xl text-gray-300 mb-8 text-center max-w-3xl">
             Empower your SaaS{" "}
             <span tw="inline-block font-bold text-indigo-400 px-1">
