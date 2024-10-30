@@ -4,6 +4,10 @@ Revify is a SaaS revenue projection tool designed to empower SaaS founders, prod
 
 ---
 
+![image](https://github.com/user-attachments/assets/2fc5f9c7-4b12-4480-9f34-3ea3ca2f4aa6)
+
+---
+
 ## 🚀 Current Development Status
 
 Revify is currently in the early development stages, focusing on creating a **landing page** to capture interest and collect email signups for launch updates. The MVP is under active development, targeting essential features for revenue forecasting, scenario comparison, and customizable projections.
