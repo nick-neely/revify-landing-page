@@ -4,8 +4,11 @@ import { PointMaterial, Points } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useCallback, useMemo, useRef } from "react";
 import * as THREE from "three";
-
-function ParticleFieldContent({ count = 1500 }) {
+interface ParticleFieldProps {
+  mouseX: number;
+  mouseY: number;
+}
+function ParticleFieldContent({ count = 1500, mouseX = 0, mouseY = 0 }) {
   const points = useRef<THREE.Points>(null);
   const lastUpdateTime = useRef(0);
 
@@ -26,20 +29,20 @@ function ParticleFieldContent({ count = 1500 }) {
           .array as Float32Array;
         for (let i = 0; i < count; i++) {
           const i3 = i * 3;
-          positions[i3] += Math.sin(time + i3) * 0.0005;
-          positions[i3 + 1] += Math.cos(time + i3 + 1) * 0.0005;
+          positions[i3] += Math.sin(time + i3 + mouseX * 0.01) * 0.0005;
+          positions[i3 + 1] += Math.cos(time + i3 + 1 + mouseY * 0.01) * 0.0005;
           positions[i3 + 2] += Math.sin(time + i3 + 2) * 0.0005;
         }
         points.current.geometry.attributes.position.needsUpdate = true;
       }
     },
-    [count]
+    [count, mouseX, mouseY]
   );
 
   useFrame((state: { clock: { getElapsedTime: () => number } }) => {
     const time = state.clock.getElapsedTime();
-    if (time - lastUpdateTime.current > 0.033) {
-      // Throttle updates to 30fps
+    if (time - lastUpdateTime.current > 0.016) {
+      // Throttle updates to 60fps
       updateParticles(time);
       lastUpdateTime.current = time;
     }
@@ -63,10 +66,10 @@ function ParticleFieldContent({ count = 1500 }) {
   );
 }
 
-export function ParticleField() {
+export function ParticleField({ mouseX, mouseY }: ParticleFieldProps) {
   return (
     <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
-      <ParticleFieldContent />
+      <ParticleFieldContent mouseX={mouseX} mouseY={mouseY} />
     </Canvas>
   );
 }
