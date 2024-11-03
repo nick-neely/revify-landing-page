@@ -27,6 +27,8 @@ export async function GET(request: NextRequest) {
   const INCREMENT_START_HOUR = 15; // Start increment at 9 AM CST (15:00 UTC)
   const INCREMENT_END_HOUR = 2; // End increment at 8 PM CST (2 AM UTC)
 
+  const isEnabled = await redis.get("counter_enabled");
+
   const currentTime = Date.now();
 
   logWithTime(`Counter request received`);
@@ -34,7 +36,7 @@ export async function GET(request: NextRequest) {
   // Get all values in a single operation using hash
   const counterData = (await redis.hgetall("counter_data")) ?? {};
   logWithTime(
-    `Current state - Counter: ${counterData.counter ?? 0}, Daily Total: ${counterData.daily_total ?? 0}`
+    `Current state - Counter: ${counterData.counter ?? 0}, Daily Total: ${counterData.daily_total ?? 0}, Enabled: ${isEnabled}`
   );
 
   let counterValue = parseInt(String(counterData.counter ?? "0"), 10);
@@ -80,7 +82,7 @@ export async function GET(request: NextRequest) {
       currentHourUTC < INCREMENT_END_HOUR;
 
   // Check if it's time to increment the counter
-  if (currentTime >= nextIncrement) {
+  if (isEnabled === "true" && currentTime >= nextIncrement) {
     logWithTime(
       `Increment window ${currentHourUTC}h UTC - Can increment: ${canIncrementNow}, Peak hour: ${currentHourUTC >= PEAK_START_HOUR && currentHourUTC < PEAK_END_HOUR}`
     );
