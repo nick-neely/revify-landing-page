@@ -17,9 +17,11 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Background } from "./Background";
+import CounterUpdater from "./CounterUpdater";
 import { Header } from "./Header";
 import { SignupForm } from "./SignupForm";
 import SpotlightCards from "./SpotlightCards";
+import UserCounter from "./UserCounter";
 
 interface Feature {
   icon: JSX.Element;
@@ -103,6 +105,9 @@ export function LandingPage() {
         <h1 className="relative z-20 mb-6 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
           Revify
         </h1>
+        <UserCounter />
+        <CounterUpdater />
+        
         <p className="relative z-20 mb-8 max-w-lg text-xl text-gray-300 sm:text-2xl">
           Empower your SaaS{" "}
           <motion.span
