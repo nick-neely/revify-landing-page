@@ -14,7 +14,7 @@ export default function UserCounter() {
 
   if (!data) {
     return (
-      <div className="absolute -right-20 -top-8 animate-pulse">
+      <div className="absolute -right-24 -top-8 animate-pulse">
         <Skeleton className="h-10 w-24 rounded-full bg-indigo-500/20" />
       </div>
     );
@@ -22,7 +22,7 @@ export default function UserCounter() {
 
   if (error) {
     return (
-      <div className="absolute -right-20 -top-8 rounded-full bg-red-500/10 p-2 text-red-500">
+      <div className="absolute -right-10 -top-6 rounded-full bg-red-500/10 p-2 text-red-500">
         <AlertCircle className="h-6 w-6" />
       </div>
     );
@@ -31,7 +31,7 @@ export default function UserCounter() {
   return (
     <Badge
       variant="secondary"
-      className="absolute -right-20 -top-8 animate-bounce"
+      className="absolute -right-32 -top-8 animate-bounce"
     >
       <span className="mr-1 text-lg font-bold text-indigo-500">
         {data.count.toLocaleString()}
