@@ -107,7 +107,6 @@ export function LandingPage() {
             Revify
           </h1>
           <UserCounter />
-          <CounterUpdater />
         </div>
 
         <p className="relative z-20 mb-8 max-w-lg text-xl text-gray-300 sm:text-2xl">

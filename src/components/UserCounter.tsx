@@ -9,7 +9,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function UserCounter() {
   const { data, error } = useSWR("/api/counter", fetcher, {
-    refreshInterval: 1000,
+    refreshInterval: 5000,
   });
 
   if (!data) {
@@ -34,7 +34,7 @@ export default function UserCounter() {
       className="absolute -right-32 -top-8 animate-bounce"
     >
       <span className="mr-1 text-lg font-bold text-indigo-500">
-        {data.count.toLocaleString()}
+        {data.counter.toLocaleString()}
       </span>
       <span className="text-xs">users signed up</span>
     </Badge>
