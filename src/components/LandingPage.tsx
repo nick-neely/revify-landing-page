@@ -102,12 +102,14 @@ export function LandingPage() {
           <ChartArea className="mx-auto h-48 w-48 text-indigo-500" />
         </motion.div>
 
-        <h1 className="relative z-20 mb-6 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-          Revify
-        </h1>
-        <UserCounter />
-        <CounterUpdater />
-        
+        <div className="relative">
+          <h1 className="relative z-20 mb-6 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            Revify
+          </h1>
+          <UserCounter />
+          <CounterUpdater />
+        </div>
+
         <p className="relative z-20 mb-8 max-w-lg text-xl text-gray-300 sm:text-2xl">
           Empower your SaaS{" "}
           <motion.span

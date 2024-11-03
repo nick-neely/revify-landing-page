@@ -1,20 +1,42 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import { AlertCircle } from "lucide-react";
 import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function UserCounter() {
   const { data, error } = useSWR("/api/counter", fetcher, {
-    refreshInterval: 1000, // Refresh every second
+    refreshInterval: 1000,
   });
 
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) {
+    return (
+      <div className="absolute -right-20 -top-8 animate-pulse">
+        <Skeleton className="h-10 w-24 rounded-full bg-indigo-500/20" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="absolute -right-20 -top-8 rounded-full bg-red-500/10 p-2 text-red-500">
+        <AlertCircle className="h-6 w-6" />
+      </div>
+    );
+  }
 
   return (
-    <div className="text-4xl font-bold">
-      {data.count.toLocaleString()} users signed up
-    </div>
+    <Badge
+      variant="secondary"
+      className="absolute -right-20 -top-8 animate-bounce"
+    >
+      <span className="mr-1 text-lg font-bold text-indigo-500">
+        {data.count.toLocaleString()}
+      </span>
+      <span className="text-xs">users signed up</span>
+    </Badge>
   );
 }
