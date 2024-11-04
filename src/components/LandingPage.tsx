@@ -17,7 +17,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Background } from "./Background";
-import CounterUpdater from "./CounterUpdater";
 import { Header } from "./Header";
 import { SignupForm } from "./SignupForm";
 import SpotlightCards from "./SpotlightCards";
