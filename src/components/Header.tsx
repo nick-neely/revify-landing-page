@@ -9,7 +9,9 @@ import Link from "next/link";
 const ThemeSwitcher = dynamic(
   () => import("./ThemeSwitcher").then((mod) => mod.ThemeSwitcher),
   {
-    loading: () => <Skeleton className="h-9 w-9 rounded-md" />,
+    loading: () => (
+      <Skeleton className="h-9 w-full min-w-[100px] rounded-md md:w-9" />
+    ),
     ssr: false,
   }
 );
