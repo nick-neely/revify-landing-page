@@ -83,11 +83,11 @@ export function LandingPage() {
   ];
 
   return (
-    <div className="relative mt-12 min-h-screen overflow-x-hidden bg-gray-900 text-white">
+    <div className="relative mt-12 min-h-screen overflow-x-hidden bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       <div className="fixed inset-0 z-0">
         <Background />
       </div>
-      <div className="fixed inset-0 z-10 bg-gray-900 bg-opacity-70 backdrop-blur-sm"></div>
+      <div className="fixed inset-0 z-10 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm"></div>
 
       <Header />
 
@@ -108,7 +108,7 @@ export function LandingPage() {
           <UserCounter />
         </div>
 
-        <p className="relative z-20 mb-8 max-w-lg text-xl text-gray-300 sm:text-2xl">
+        <p className="relative z-20 mb-8 max-w-lg text-xl text-gray-600 dark:text-gray-300 sm:text-2xl">
           Empower your SaaS{" "}
           <motion.span
             className="inline-block font-bold text-indigo-400"
@@ -128,7 +128,7 @@ export function LandingPage() {
           scale with confidence.
         </p>
         <SignupForm />
-        <p className="relative z-20 mt-6 text-sm text-gray-400">
+        <p className="relative z-20 mt-6 text-sm text-gray-500 dark:text-gray-400">
           Join other SaaS founders eagerly awaiting our launch!
         </p>
 

@@ -2,6 +2,7 @@
 
 import { PointMaterial, Points } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useTheme } from "next-themes";
 import { useCallback, useMemo, useRef } from "react";
 import * as THREE from "three";
 interface ParticleFieldProps {
@@ -9,8 +10,12 @@ interface ParticleFieldProps {
   mouseY: number;
 }
 function ParticleFieldContent({ count = 1500, mouseX = 0, mouseY = 0 }) {
+  const { theme, systemTheme } = useTheme();
   const points = useRef<THREE.Points>(null);
   const lastUpdateTime = useRef(0);
+
+  // Get the effective theme
+  const effectiveTheme = theme === "system" ? systemTheme : theme;
 
   const particlePositions = useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -57,10 +62,11 @@ function ParticleFieldContent({ count = 1500, mouseX = 0, mouseY = 0 }) {
     >
       <PointMaterial
         transparent
-        color="#8080ff"
+        color={effectiveTheme === "dark" ? "#8080ff" : "#0f172a"} // Use effectiveTheme instead of theme
         size={0.05}
         sizeAttenuation={true}
         depthWrite={false}
+        opacity={0.8}
       />
     </Points>
   );

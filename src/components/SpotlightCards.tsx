@@ -26,7 +26,7 @@ const SpotlightCards: React.FC<SpotlightCardsProps> = ({ features }) => {
           <SpotlightCard key={index}>
             <div
               className={`relative z-20 h-full overflow-hidden rounded-[inherit] ${
-                feature.isFeatured ? "bg-slate-800" : "bg-slate-900"
+                feature.isFeatured ? "bg-slate-100 dark:bg-slate-800" : "bg-white dark:bg-slate-900"
               } p-6 pb-8`}
             >
               {feature.isFeatured && (
@@ -39,19 +39,19 @@ const SpotlightCards: React.FC<SpotlightCardsProps> = ({ features }) => {
                 className="pointer-events-none absolute bottom-0 left-1/2 -z-10 aspect-square w-1/2 -translate-x-1/2 translate-y-1/2"
                 aria-hidden="true"
               >
-                <div className="translate-z-0 absolute inset-0 rounded-full bg-slate-800 blur-[80px]"></div>
+                <div className="translate-z-0 absolute inset-0 rounded-full bg-slate-200 dark:bg-slate-800 blur-[80px]"></div>
               </div>
               <div className="flex h-full flex-col items-center text-center">
                 {/* Icon */}
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-900">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900">
                   {feature.icon}
                 </div>
                 {/* Text */}
                 <div className="flex grow flex-col items-center">
-                  <h2 className="mb-1 flex min-h-[3rem] items-center justify-center text-xl font-bold text-slate-200">
+                  <h2 className="mb-1 flex min-h-[3rem] items-center justify-center text-xl font-bold text-slate-900 dark:text-slate-200">
                     {feature.title}
                   </h2>
-                  <p className="flex min-h-[4rem] items-center justify-center text-sm text-slate-500">
+                  <p className="flex min-h-[4rem] items-center justify-center text-sm text-slate-600 dark:text-slate-500">
                     {feature.description}
                   </p>
                 </div>
