@@ -1,4 +1,5 @@
 import { redis } from "@/lib/redis";
+import { Receiver } from "@upstash/qstash";
 import { NextRequest, NextResponse } from "next/server";
 
 function formatTimeCST(timestamp: number) {
@@ -13,10 +14,29 @@ const logWithTime = (message: string) => {
   console.log(`[${formatTimeCST(Date.now())}] ${message}`);
 };
 
-export async function GET(request: NextRequest) {
-  // Verify the request is from Vercel Cron
-  const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+const receiver = new Receiver({
+  currentSigningKey: process.env.QSTASH_CURRENT_SIGNING_KEY!,
+  nextSigningKey: process.env.QSTASH_NEXT_SIGNING_KEY!,
+});
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export async function POST(request: NextRequest) {
+  const signature = request.headers.get("upstash-signature") || "";
+  const body = await request.text();
+
+  // Verify the request is from QStash
+  const isValid = await receiver.verify({
+    signature,
+    body,
+    url: request.url,
+  });
+
+  if (!isValid) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
