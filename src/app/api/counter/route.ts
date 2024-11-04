@@ -27,7 +27,24 @@ export async function GET(request: NextRequest) {
   const INCREMENT_START_HOUR = 15; // Start increment at 9 AM CST (15:00 UTC)
   const INCREMENT_END_HOUR = 2; // End increment at 8 PM CST (2 AM UTC)
 
+  // Check enabled status first
   const isEnabled = await redis.get("counter_enabled");
+  
+  if (isEnabled !== "true") {
+    // Get last known value with minimal Redis commands
+    const counterData = await redis.hget("counter_data", "counter");
+    const lastKnownCount = parseInt(String(counterData ?? "0"), 10);
+    
+    // Return with cache headers when disabled
+    return NextResponse.json(
+      { counter: lastKnownCount },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        },
+      }
+    );
+  }
 
   const currentTime = Date.now();
 

@@ -10,6 +10,9 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function UserCounter() {
   const { data, error } = useSWR("/api/counter", fetcher, {
     refreshInterval: 5000,
+    revalidateOnFocus: false,  // Don't revalidate on focus
+    keepPreviousData: true,    // Keep showing previous data while revalidating
+    dedupingInterval: 5000,    // Dedupe requests within 5s window
   });
 
   if (!data) {
