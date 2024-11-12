@@ -6,6 +6,7 @@ const publicRoutes = createRouteMatcher([
   "/api/webhooks(.*)",
   "/api/counter",
   "/api/cron(.*)",
+  "/api/og/(.*)",
 ]);
 const adminRoutes = createRouteMatcher(["/api/counter/toggle"]);
 
